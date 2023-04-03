@@ -18,8 +18,7 @@ $router = new App\Router();
 
 $router
     ->get("/", [\App\Controllers\Home::class, 'index'])
-    ->get("/invoices", [\App\Controllers\Invoice::class, 'index'])
-    ->get("/invoices/create", [\App\Controllers\Invoice::class, 'create']);
+    ->get("/register", [\App\Controllers\Account::class, 'register']);
 
 (new \App\App($router,
     [

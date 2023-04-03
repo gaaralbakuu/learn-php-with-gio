@@ -3,30 +3,34 @@
 namespace App\Controllers;
 
 use App\App;
+use App\Models\SignUp;
+use App\Models\User;
+use App\Models\UserInfo;
 
 class Home
 {
     public function index(): View
     {
-        $db = App::db();
+        $username = "phamminhdat";
+        $salt = md5(time());
+        $password = md5($salt . "123456" . $salt);
+        $name = "Phạm Minh Đạt";
+        $gender = 0;
 
-        try {
-            $db->beginTransaction();
+        $userModel = new User();
+        $userInfoModel = new UserInfo();
+        (new SignUp($userModel, $userInfoModel))->register(
+            [
+                "username" => $username,
+                "salt" => $salt,
+                "password" => $password
+            ],
+            [
+                "name" => $name,
+                "gender" => $gender
+            ]
+        );
 
-            $stmt = $db->prepare("INSERT INTO users(username, password, salt) VALUES (?, ?, ?)");
-
-            $stmt->execute(["gaaralbakuu", "123456", "salt"]);
-
-            echo $db->lastInsertId();
-
-            $db->commit();
-        }catch (\Throwable $e){
-            if($db->inTransaction()){
-                $db->rollBack();
-            }
-
-            throw $e;
-        }
         return View::make("index");
     }
 }
