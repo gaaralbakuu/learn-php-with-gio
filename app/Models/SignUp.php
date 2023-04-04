@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-class SignUp{
+use App\Model;
+
+class SignUp extends Model{
     public function __construct(protected User $userModel, protected UserInfo $userInfoModel)
     {
+        parent::__construct();
     }
 
     /**
