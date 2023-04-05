@@ -7,14 +7,16 @@ use App\Models\SignUp;
 use App\Models\SignUpInterface;
 use App\Models\User;
 use App\Models\UserInfo;
+use App\Attributes\Route;
 
-class Home
+class HomeController
 {
     public function __construct(private SignUpInterface $signUp)
     {
         
     }
 
+    #[Route("/")]
     public function index(): View
     {
         $username = "phamminhdat";

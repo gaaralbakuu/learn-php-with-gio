@@ -1,7 +1,12 @@
 <?php
 
+use App\Router;
+use App\App;
 use App\Config;
 use App\Container;
+use App\Controllers\AccountController;
+use App\Controllers\HomeController;
+use App\Controllers\InvoiceController;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -16,13 +21,23 @@ define("STORAGE_PATH", __DIR__ . "/../storage");
 define("VIEW_PATH", __DIR__ . "/../views");
 
 $container = new Container();
-$router = new App\Router($container);
+$router = new Router($container);
 
-$router
-    ->get("/", [\App\Controllers\Home::class, 'index'])
-    ->get("/register", [\App\Controllers\Account::class, 'register']);
+$router->registerRoutesFromControllerAttributes([
+    HomeController::class,
+    InvoiceController::class,
+    AccountController::class
+]);
 
-(new \App\App(
+// echo '<pre>';
+// print_r($router->routes());
+// echo '</pre>';
+
+// $router
+//     ->get("/", [\App\Controllers\Home::class, 'index'])
+//     ->get("/register", [\App\Controllers\Account::class, 'register']);
+
+(new App(
     $container,
     $router,
     [

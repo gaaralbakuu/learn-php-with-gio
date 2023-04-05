@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Account
+class AccountController
 {
 
     public function __construct()
