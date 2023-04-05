@@ -7,16 +7,17 @@ use App\Models\SignUp;
 use App\Models\SignUpInterface;
 use App\Models\User;
 use App\Models\UserInfo;
-use App\Attributes\Route;
+use App\Attributes\{Get, Post, Put};
 
 class HomeController
 {
     public function __construct(private SignUpInterface $signUp)
     {
-        
+
     }
 
-    #[Route("/")]
+    #[Get("/")]
+    #[Get("/home")]
     public function index(): View
     {
         $username = "phamminhdat";
@@ -39,6 +40,18 @@ class HomeController
             ]
         );
 
+        return View::make("index");
+    }
+
+    #[Put('/')]
+    public function put()
+    {
+        return View::make("index");
+    }
+
+    #[Post('/')]
+    public function post()
+    {
         return View::make("index");
     }
 }

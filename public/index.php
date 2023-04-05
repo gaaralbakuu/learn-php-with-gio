@@ -29,9 +29,11 @@ $router->registerRoutesFromControllerAttributes([
     AccountController::class
 ]);
 
-// echo '<pre>';
-// print_r($router->routes());
-// echo '</pre>';
+
+
+ echo '<pre>';
+ print_r($router->routes());
+ echo '</pre>';
 
 // $router
 //     ->get("/", [\App\Controllers\Home::class, 'index'])
