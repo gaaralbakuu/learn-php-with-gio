@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Model;
 
-class SignUp extends Model{
+class SignUp extends Model implements SignUpInterface{
     public function __construct(protected User $userModel, protected UserInfo $userInfoModel)
     {
         parent::__construct();

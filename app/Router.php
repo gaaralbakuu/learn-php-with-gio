@@ -8,6 +8,11 @@ class Router
 {
     private array $routes;
 
+    public function __construct(private Container $container)
+    {
+        
+    }
+
     private function register(string $requestMethod, string $route, callable|array $action): self
     {
         $this->routes[$requestMethod][$route] = $action;
@@ -24,7 +29,8 @@ class Router
         return $this->register("post", $route, $action);
     }
 
-    public function routes(): array{
+    public function routes(): array
+    {
         return $this->routes;
     }
 
@@ -41,16 +47,20 @@ class Router
             return call_user_func($action);
         }
 
+        [$class, $method] = $action;
+
         if (is_array($action)) {
-            [$class, $method] = $action;
 
             if (class_exists($class)) {
-                $class = new $class();
+                $class = $this->container->get($class);
+
 
                 if (method_exists($class, $method)) {
                     return call_user_func_array([$class, $method], []);
                 }
             }
         }
+
+        throw new RouteNotFoundException();
     }
 }
