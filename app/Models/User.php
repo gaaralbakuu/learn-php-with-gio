@@ -7,10 +7,8 @@ use App\Model;
 class User extends Model
 {
     public function create(string $username, string $password, string $salt): int{
-        $stmt = $this->db->prepare("INSERT INTO users(username, password, salt) VALUES (?, ?, ?)");
-
-        $stmt->execute([$username, $password, $salt]);
-
-        return (int) $this->db->lastInsertId();
+        // $this->db->createQueryBuilder()->select;
+        $stmt = $this->db->createQueryBuilder();
+        return (int) 1;
     }
 }
