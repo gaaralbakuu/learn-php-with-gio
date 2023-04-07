@@ -10,8 +10,7 @@ return [
     ],
 
     'migrations_paths' => [
-        'MyProject\Migrations' => '/data/doctrine/migrations/lib/MyProject/Migrations',
-        'MyProject\Component\Migrations' => './Component/MyProject/Migrations',
+        'Migrations' => '/migrations'
     ],
 
     'all_or_nothing' => true,

@@ -24,4 +24,34 @@ class User
 
     #[Column]
     private string $salt;
+
+    public function setUsername(string $username): User
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+    public function setPassword(string $password): User
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    public function setSalt(string $salt): User
+    {
+        $this->salt = $salt;
+        return $this;
+    }
+
+    public function getUsername(): string{
+        return $this->username;
+    }
+
+    public function getPassword(): string{
+        return $this->password;
+    }
+
+    public function getSalt(): string{
+        return $this->salt;
+    }
 }

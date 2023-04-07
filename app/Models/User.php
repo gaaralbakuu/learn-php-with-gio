@@ -8,7 +8,7 @@ class User extends Model
 {
     public function create(string $username, string $password, string $salt): int{
         // $this->db->createQueryBuilder()->select;
-        $stmt = $this->db->createQueryBuilder();
+        $stmt = $this->db->createQueryBuilder()->select();
         return (int) 1;
     }
 }

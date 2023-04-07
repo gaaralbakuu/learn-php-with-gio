@@ -2,13 +2,13 @@
 
 namespace App\Attributes;
 use App\Constracts\RouteInterface;
-
+use App\Enums\HttpMethod;
 use Attribute;
 
 #[Attribute]
 class Route implements RouteInterface{
 
-    public function __construct(public string $routePath, public string $method = 'get')
+    public function __construct(public string $routePath, public HttpMethod $method = HttpMethod::Get)
     {
         
     }
