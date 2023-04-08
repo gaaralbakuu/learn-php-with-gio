@@ -1,5 +1,7 @@
 <?php
 use App\Entity\User;
+use App\Entity\UserInfo;
+use App\Enums\GenderStatus;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
@@ -28,15 +30,17 @@ $entityManager = new EntityManager(
 $username = "phamminhdat";
 $salt = md5(time());
 $password = md5($salt . "123456" . $salt);
-// $name = "Phạm Minh Đạt";
-// $gender = 0;
+$name = "Phạm Minh Đạt";
+$gender = GenderStatus::Male;
 
 $user = (new User())
     ->setUsername($username)
     ->setPassword($password)
     ->setSalt($salt);
 
+$userInfo = (new UserInfo())
+    ->setName($name)
+    ->setGender(GenderStatus::Male);
+
 $entityManager->persist($user);
 $entityManager->flush();
-
-var_dump($user);

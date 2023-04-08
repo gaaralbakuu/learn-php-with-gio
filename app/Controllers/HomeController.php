@@ -27,7 +27,7 @@ class HomeController
         // $name = "Phạm Minh Đạt";
         // $gender = 0;
 
-        (new EntityUser())
+        $user = (new EntityUser())
             ->setUsername($username)
             ->setPassword($password)
             ->setSalt($salt);
